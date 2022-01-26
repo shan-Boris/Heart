@@ -1,0 +1,44 @@
+@import "nullstyle.scss";
+
+.wrapper {
+}
+.main {
+    display: grid;
+    grid-template: minmax(50px, auto) 1fr 1fr 1fr/ 1fr 3fr 2fr 1fr;
+    grid-template-areas: 
+    ". navigation navigation ."
+    ". title img ."
+    ". subtitle img ."
+    ". order-button img ."    ;
+
+		&__title {
+            grid-area: title;
+		}
+
+		&__subtitle {
+            grid-area: subtitle;
+		}
+
+		&__img {
+            grid-area: img;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+		}
+}
+.nav {
+    grid-area: navigation;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    column-gap: 10%;
+    align-items: center;
+
+		&__link {
+		}
+}
+.order-button {
+    grid-area: order-button;
+
+}
