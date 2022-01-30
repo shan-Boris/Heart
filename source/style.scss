@@ -1,21 +1,21 @@
 @import "nullstyle.scss";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap");
 @mixin fontsz($f1, $f2, $f3) {
-    font-size: ($f1*1rem/14);
+    font-size: ($f1*1rem/16);
     @media (max-width:992px) {
-        font-size: ($f2*1rem/14);
+        font-size: ($f2*1rem/16);
     }
     @media (max-width:767px) {
-        font-size: ($f3*1rem/14);
+        font-size: ($f3*1rem/16);
     }
 }
 @mixin property_media($property, $v1, $v2, $v3) {
-    #{$property}: ($v1*1rem/14);
+    #{$property}: ($v1*1rem/16);
     @media (max-width:992px) {
-        #{$property}: ($v2*1rem/14);
+        #{$property}: ($v2*1rem/16);
     }
     @media (max-width:767px) {
-        #{$property}: ($v3*1rem/14);
+        #{$property}: ($v3*1rem/16);
     }}
 
 
@@ -35,13 +35,14 @@ a {
     @extend %template-background;
     height: 100vh;
     display: grid;
-    grid-template: minmax(50px, auto) 2fr 1fr 1fr 1fr/ 1fr 5fr minmax(300px, 3fr) 1fr;
+    grid-template: minmax(50px, auto) 1.5fr 1fr 1fr / 1fr 5fr minmax(300px, 3fr) 1fr;
     grid-template-areas:
         ". navigation navigation ."
         ". title img ."
         ". subtitle img ."
         ". order-button img ."
         ". . img .";
+
     position: relative;
     &:after {
         content: "";
@@ -55,6 +56,7 @@ a {
     &__title {
         grid-area: title;
         align-self: end;
+        z-index: 2;
         font-weight: 800;
         @include fontsz(38, 30, 25);
         @include property_media(line-height, 50, 40, 35);
@@ -66,6 +68,7 @@ a {
         @include fontsz(16,16,12);
         padding: 10px 0 0 0;
         align-self: start;
+        z-index: 2;
     }
 
     &__img {
@@ -74,12 +77,27 @@ a {
 
         display: grid;
         align-items: end;
+        overflow: hidden; 
 
         img {
             object-fit: contain;
             max-width: 100%;
             max-height: 100%;
         }
+        @media (max-width:600px) {
+            position:absolute;
+            opacity: 0.1;
+            max-height: 100vh;
+                   }
+    }
+    @media (max-width:600px) {
+        grid-template: minmax(50px, auto) 1.5fr 1fr 1fr / 1fr 5fr 1fr;
+        grid-template-areas:
+            ". navigation ."
+            ". title ."
+            ". subtitle ."
+            ". order-button ."
+            ;
     }
 }
 .nav {
@@ -92,6 +110,8 @@ a {
     font-weight: 600;
     font-size: 14px;
     text-transform: uppercase;
+    z-index: 2;
+    text-align: center;
 
     &__link {
     }
@@ -104,6 +124,7 @@ a {
     color:#fff;
     padding: 3%;
     width: 10rem;
+    z-index: 2;
     background: linear-gradient(98.89deg, #ff9b05 25.06%, #ff8f3f 88.94%);
     box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.08);
     border-radius: 5px;
@@ -114,4 +135,118 @@ a {
         &:active{
             transform: none ;         
         }
+}
+
+.about {
+    background: #F5F9FF;
+    color: #2E3A59;
+
+    height: 100vh;
+    display: grid;
+    grid-template: 1fr 3fr / 1fr 3fr 2.5fr 2.5fr 1fr;
+    grid-template-areas: 
+    ". img title title ."
+    ". img deskription deskription ."
+    ;
+    align-items: center;
+    justify-content: center;
+
+    &__title {
+        grid-area: title;
+        text-align: center;
+    }
+
+    &__img {
+        grid-area: img;
+        object-fit: contain;
+        align-self: end;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+    }
+
+    &__deskription {
+        grid-area: deskription;
+        display: grid;
+        align-items: start;
+        grid-template: 1fr 2fr/ 1fr 1fr;
+        grid-template-areas: 
+        "congratulation__title rent__title"
+        "congratulation__text rent__text";
+
+    }
+
+
+    &__subtitle {
+        font-weight: 800;
+        @include fontsz(25, 20, 20);
+        text-align: center;
+        padding: 10px;
+    
+    }
+
+    &__text {
+        @include fontsz(18, 18, 14);
+        text-align: left;
+
+        li{
+            position: relative;
+            padding: 10px 0 0 1.2em;
+                &:before{
+                content: "";
+                position: absolute;
+                top: 12px;
+                left: 0;
+                width: 0.8em;
+                height: 0.8em;
+                background: #FB8500;
+                transform: rotate(-45deg);
+            }
+                &:first-child{
+                    margin: 0 0 5px 0;
+                    &:before{
+                        display: none;
+                    }
+    
+
+                }
+
+        }
+        
+
+
+    }
+
+}
+
+.congratulation {
+
+    &__title {
+        grid-area: congratulation__title;
+
+    }
+
+    &__text {
+        grid-area: congratulation__text;
+
+    }
+}
+.rent {
+
+    &__title {
+        grid-area: rent__title;
+
+    }
+
+    &__text {
+        grid-area: rent__text;
+
+    }
+}
+
+.title {
+    font-weight: 800;
+    @include fontsz(38, 30, 25)
 }
