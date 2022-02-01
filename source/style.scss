@@ -197,12 +197,12 @@ a {
         font-weight: 800;
         @include fontsz(25, 20, 20);
         text-align: center;
-        padding: 10px;
+        padding: 5px;
     
     }
 
     &__text {
-        @include fontsz(18, 18, 14);
+        @include fontsz(18, 18, 12);
         text-align: left;
 
         li{
@@ -275,4 +275,34 @@ a {
 .title {
     font-weight: 800;
     @include fontsz(38, 30, 25)
+}
+
+.cost {
+
+    &__title {
+    }
+}
+
+.card {
+
+    &_first {
+    }
+
+    &_second {
+    }
+
+    &_third {
+    }
+
+    &__title {
+    }
+
+    &__img {
+    }
+
+    &__price {
+    }
+
+    &__button {
+    }
 }
