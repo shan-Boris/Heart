@@ -281,11 +281,15 @@ a {
     @extend %template-background;
     height: 100vh;
     display: grid;
-    grid-template: 50px 1fr / 1fr 2.33fr 2.33fr 2.33fr 1fr;
+    column-gap: 30px;
+    grid-template: 50px 1fr auto 1fr / 0.5fr 2.33fr 2.33fr 2.33fr 0.5fr;
     grid-template-areas: 
     ". cost__title cost__title cost__title ."
-    ". card__first card__second card__third .";
+    ". . . . ."
+    ". card__first card__second card__third ."
+    ". . . . .";
     justify-items: center;
+    align-items: end;
 
 
 
@@ -293,35 +297,73 @@ a {
         grid-area: cost__title;
 
     }
+    @media (max-width:600px) {
+        height: auto;
+        column-gap: 0px;
+        row-gap: 10px;
+        grid-template: 50px 1fr 1fr 1fr / 0.5fr 1fr 0.5fr;
+        grid-template-areas: 
+        ". cost__title ."
+        ". card__first ."
+        ". card__second ."
+        ". card__third .";
+   
+        justify-items: center;
+        align-items: end;
+        
+    }
 }
 
 .card {
     display: grid;
     justify-items: center;
+    align-items: start;
+    gap: 10px;
     grid-template-areas: 
     "card__title"
     "card__img"
     "card__price"
     "card__button";
-    
-    ;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
+    border-radius: 5px 55px;
     &_first {
         grid-area: card__first;
 
+        .card__title{
+        background: linear-gradient(103.24deg, #05FFFF -7.39%, #0AA6FE 85.9%);
+        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
+        border-radius: 5px 55px 0px;
+
+        }
     }
 
     &_second {
         grid-area: card__second;
-
+        .card__title {
+        background: linear-gradient(89.46deg, #DDA6FF -5.85%, #D828F4 106.28%);
+        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
+        border-radius: 5px 55px 0px;
+        }
     }
 
     &_third {
         grid-area: card__third;
+        .card__title {
+        background: linear-gradient(98.51deg, #FF9898 14.64%, #FF1F00 102.27%);
+        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
+        border-radius: 5px 55px 0px;
+        }
 
     }
 
     &__title {
+        padding: 5% ;
+        justify-self: stretch;
+        align-content: center;
         grid-area: card__title;
+        height: 50px;
     }
 
     &__img {
@@ -331,18 +373,48 @@ a {
         img {
             object-fit: contain;
 
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 80%;
+            max-height: 90%;
         }
     }
 
     &__price {
         grid-area: card__price;
+        font-weight: 600;
+        @include fontsz(30, 25, 20);
+        color: #2E3A59;
+        position: relative;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            background: url(../img/cost__price.png) 0 0/contain no-repeat;
+            width: 0.5em;
+            height: 0.75em;
+            top: 15%;
+            left: 105%;
+        }
 
     }
 
     &__button {
         grid-area: card__button;
+        justify-self: stretch;
+        width: 100%;
+        border-radius: 0px 0px 5px 55px ;
+        height: 50px;
+        align-items: center;
+        padding: 15px 0 0 0;
+        @include fontsz(20, 20, 14);
+
+        &:hover{
+            transform: none;
+            border-radius: 0px 0px 5px 5px ;
+            cursor: pointer;
+      
+        }
+
 
     }
+
 }
