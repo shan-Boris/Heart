@@ -364,6 +364,8 @@ a {
         align-content: center;
         grid-area: card__title;
         height: 50px;
+        overflow: hidden;
+
     }
 
     &__img {
@@ -444,7 +446,7 @@ a {
         background: #FFFFFF;
         box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.03);
         border-radius: 5px;
-        padding: 20px;
+        padding: 20px 40px 20px 20px;
         position: relative;
 
         &:after{
@@ -453,10 +455,56 @@ a {
             width: 30px;
             height: 30px;
             background: url(../img/faq__plus.png) 0 0 / contain no-repeat;
-            top: 25%;
+            top: 50%;
+            transform: translate(0, -50%);
             right: 2%;
 
         }
     }
 }
 
+.footer {
+    background: #F5F9FF;
+    text-align: center;
+    padding-bottom: 12px;
+
+    
+
+
+    &__text {
+        color: #2E3A59;
+        text-transform: lowercase;
+        @include fontsz(14, 10, 10);
+        text-align: center;
+        position: relative;
+        opacity: 0.2;
+        transition-duration: 350ms;
+        &:hover {
+            opacity: 1;
+        }
+        &::after {
+            content: "";
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 2px;
+            right: -20px;
+            background: url(../img/footer__telega.png) 0 0 / contain no-repeat;
+
+        }
+        &::before{
+            content: "";
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: -2px;
+            right: -25px;
+            background: linear-gradient(103.01deg, #0AA6FE -49.1%, #05FFFF 177.15%);
+            box-shadow: 0px 4px 25px rgba(10, 166, 254, 0.48), inset 0px 0px 25px rgba(0, 50, 180, 0.3);
+            border-radius: 3px;
+            transform: rotate(-45deg);
+
+
+        }
+    }
+}
