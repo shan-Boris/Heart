@@ -1,4 +1,5 @@
 @import "nullstyle.scss";
+@import "spoiler.scss";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap");
 @mixin fontsz($f1, $f2, $f3) {
     font-size: ($f1*1rem/16);
@@ -368,6 +369,7 @@ a {
 
     }
 
+
     &__img {
         grid-area: card__img;
 
@@ -424,7 +426,7 @@ a {
 .faq {
     background: #F5F9FF;
     color: #2E3A59;
-    height: 100vh;
+    min-height: 100vh;
     &__title {
         text-align: center;
         padding: 10px;
@@ -436,126 +438,16 @@ a {
         gap: 10px;
         justify-content: center;
         align-items: center;
-        
-
-
-    }
-
-    &__query {
         @include fontsz(20, 20, 16);
-        background: #FFFFFF;
-        box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.03);
-        border-radius: 5px;
-        padding: 20px 40px 20px 20px;
-        position: relative;
 
-        &:hover {
-            cursor: pointer;
-
-        }
-
-    }
-
-    &__plus {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        background:
-        linear-gradient(103.24deg, #05FFFF -7.39%, #0AA6FE 85.9%),
-        linear-gradient(103.24deg, #05FFFF -7.39%, #0AA6FE 85.9%);
-        background-position:center;
-        background-size: 30px 3px, 3px 30px; 
-        background-repeat:no-repeat;
-        top: 30px;
-        transform: translate(0, -50%);
-        right: 2%;
-        animation-duration: 0.5s;
-        animation-timing-function: cubic-bezier(0.68,-0.55,0.265,1.55);
-        animation-fill-mode: forwards; 
         
- 
-    }
-    &__plusToCross {
-        animation-name: plusAnimate;
-        animation-direction: normal;
+
+
     }
 
-    &__crossToPlus {
-        animation-name: crossAnimate;
-        animation-direction: reverse;
-    }
-
-    &__answer {
-        margin: 20px -40px -20px -20px;
-        padding: 20px 40px 20px 20px;
-        background: #fafbfd;
-        box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.03);
-        border-radius: 0 0 5px 5px;
-        display: none;
-        
-    }
-
-    &__answer_show {
-        animation: answerShow 0.5s;
-        animation-fill-mode: forwards; 
-        display: block;
-    }
 }
 
-@keyframes answerShow{
 
-    0%{
-        transform: translate(0, -10%);
-        opacity: 0;
-    }
-
-    100%{
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-    }
-
-@keyframes plusAnimate{
-    0%{
-        transform: translate(0, -50%) rotate(0deg);
-    }
-    100%{
-        transform: translate(0, -50%) rotate(45deg);
-    }
-    }
-
-@keyframes crossAnimate{
-    0%{
-        transform: translate(0, -50%) rotate(0deg);
-    }
-    100%{
-        transform: translate(0, -50%) rotate(45deg);
-    }
-    }
-
-
-
-
-.faq {
-
-    &__title {
-    }
-
-    &__questions {
-    }
-
-    &__query {
-
-        &_activ {
-        }
-    }
-
-    &__plusvert {
-    }
-
-    &__answer {
-    }
-}
 .title {
 }
 
