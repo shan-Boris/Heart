@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
             queryPlus.classList.add('faq__plusToCross');
         }
 
-        
+    queryAll[i].querySelector('.faq__answer').classList.toggle('faq__answer_show');
     
     })})
 

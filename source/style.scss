@@ -466,12 +466,13 @@ a {
         background-position:center;
         background-size: 30px 3px, 3px 30px; 
         background-repeat:no-repeat;
-        top: 50%;
+        top: 30px;
         transform: translate(0, -50%);
         right: 2%;
-        animation-duration: 1s;
+        animation-duration: 0.5s;
         animation-timing-function: cubic-bezier(0.68,-0.55,0.265,1.55);
         animation-fill-mode: forwards; 
+        
  
     }
     &__plusToCross {
@@ -485,16 +486,41 @@ a {
     }
 
     &__answer {
+        margin: 20px -40px -20px -20px;
+        padding: 20px 40px 20px 20px;
+        background: #fafbfd;
+        box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.03);
+        border-radius: 0 0 5px 5px;
+        display: none;
+        
+    }
 
+    &__answer_show {
+        animation: answerShow 0.5s;
+        animation-fill-mode: forwards; 
+        display: block;
     }
 }
+
+@keyframes answerShow{
+
+    0%{
+        transform: translate(0, -10%);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    }
 
 @keyframes plusAnimate{
     0%{
         transform: translate(0, -50%) rotate(0deg);
     }
     100%{
-        transform: translate(0, -50%) rotate(135deg);
+        transform: translate(0, -50%) rotate(45deg);
     }
     }
 
@@ -503,7 +529,7 @@ a {
         transform: translate(0, -50%) rotate(0deg);
     }
     100%{
-        transform: translate(0, -50%) rotate(135deg);
+        transform: translate(0, -50%) rotate(45deg);
     }
     }
 
