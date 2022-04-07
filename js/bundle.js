@@ -30,6 +30,45 @@ function navigateOnAnchors() {
 
 /***/ }),
 
+/***/ "./js/modules/scrollToTop.js":
+/*!***********************************!*\
+  !*** ./js/modules/scrollToTop.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function addScrollToTopWithPG() {
+    const offset = 200, // height for emersion 
+    scrollUp = document.querySelector('.scroll-up'),
+    scrollUpSvgPath = document.querySelector('.scroll-up__svg-path'),
+    pathLength = scrollUpSvgPath.getTotalLength(),
+    heightDoc = document.documentElement.scrollHeight - window.innerHeight;
+
+scrollUpSvgPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+scrollUpSvgPath.style.transition = 'stroke-dashoffset 20ms';
+
+function updateProgressBar() {
+  const passedPath = window.scrollY * pathLength / heightDoc;
+  scrollUpSvgPath.style.strokeDashoffset = pathLength - passedPath;
+}
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > offset) {
+      scrollUp.classList.add('scroll-up_activ');
+      updateProgressBar();
+  } else {
+      scrollUp.classList.remove('scroll-up_activ');
+  }
+})
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addScrollToTopWithPG());
+
+/***/ }),
+
 /***/ "./js/modules/spoiler.js":
 /*!*******************************!*\
   !*** ./js/modules/spoiler.js ***!
@@ -126,7 +165,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_spoiler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/spoiler */ "./js/modules/spoiler.js");
 /* harmony import */ var _modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/navigationOnAnchors */ "./js/modules/navigationOnAnchors.js");
+/* harmony import */ var _modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/scrollToTop */ "./js/modules/scrollToTop.js");
  
+
 
 
 
@@ -134,31 +175,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     (0,_modules_spoiler__WEBPACK_IMPORTED_MODULE_0__["default"])();
     (0,_modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    
+    (0,_modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
-    // scrollToTop and progressBar
-    const offset = 200, // height for emersion 
-          scrollUp = document.querySelector('.scroll-up'),
-          scrollUpSvgPath = document.querySelector('.scroll-up__svg-path'),
-          pathLength = scrollUpSvgPath.getTotalLength(),
-          heightDoc = document.documentElement.scrollHeight - window.innerHeight;
-
-    scrollUpSvgPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
-    scrollUpSvgPath.style.transition = 'stroke-dashoffset 20ms';
-
-    function updateProgressBar() {
-        const passedPath = window.scrollY * pathLength / heightDoc;
-        scrollUpSvgPath.style.strokeDashoffset = pathLength - passedPath;
-    }
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > offset) {
-            scrollUp.classList.add('scroll-up_activ');
-            updateProgressBar();
-        } else {
-            scrollUp.classList.remove('scroll-up_activ');
-        }
-    })
+ 
+   
 
 })
 })();
