@@ -17,7 +17,7 @@
             </nav>
             <h1 class="main__title">Первый романтический курьер в Кемерове!</h1>
             <div class="main__subtitle">Доставлю подарки и отличное настроение вашим близким</div>
-            <button class="order-button main__button">заказать</button>
+            <button id="open_pop_up" class="order-button main__button">заказать</button>
             <div class="main__img">
                 <img src="img/main__img2.png" alt="">
             </div>
@@ -121,6 +121,19 @@
             />
         </svg>
     </a>
+    <div class="pop_up">
+        <div class="pop_up_container">
+            <div class="pop_up_body">
+                <p>Заказать</p>
+                <form action="">
+                    <input type="text" placeholder="Имя">
+                    <input type="text" placeholder="Телефон">
+                    <button>Оставить заказ</button>
+                </form>
+                <div class="pop_up_close">&#10006</div>
+            </div>
+        </div>
+    </div>
     <script src="js/bundle.js"></script>
 </body>
 </html>

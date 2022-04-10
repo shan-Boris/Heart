@@ -23,4 +23,4 @@ window.addEventListener('scroll', () => {
 })
 };
 
-export default addScrollToTopWithPG();
+export default addScrollToTopWithPG;

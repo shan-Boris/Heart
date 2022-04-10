@@ -65,7 +65,7 @@ window.addEventListener('scroll', () => {
 })
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addScrollToTopWithPG());
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addScrollToTopWithPG);
 
 /***/ }),
 
@@ -166,7 +166,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_spoiler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/spoiler */ "./js/modules/spoiler.js");
 /* harmony import */ var _modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/navigationOnAnchors */ "./js/modules/navigationOnAnchors.js");
 /* harmony import */ var _modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/scrollToTop */ "./js/modules/scrollToTop.js");
- 
+
 
 
 
@@ -177,8 +177,19 @@ window.addEventListener('DOMContentLoaded', () => {
     (0,_modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__["default"])();
     (0,_modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
- 
-   
+    const openPopUp = document.getElementById('open_pop_up');
+    const closePopUp = document.querySelector('.pop_up_close');
+    const popUp = document.querySelector('.pop_up');
+
+    openPopUp.addEventListener('click', function (e) {
+        e.preventDefault();
+        popUp.classList.add('pop_up_active');
+    })
+
+    closePopUp.addEventListener('click', () => {
+        popUp.classList.remove('pop_up_active');
+    })
+
 
 })
 })();
