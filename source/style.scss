@@ -331,32 +331,14 @@ a {
     border-radius: 5px 55px;
     &_first {
         grid-area: card__first;
-
-        .card__title{
-        background: linear-gradient(103.24deg, #05FFFF -7.39%, #0AA6FE 85.9%);
-        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
-        border-radius: 5px 55px 0px;
-
-        }
     }
 
     &_second {
         grid-area: card__second;
-        .card__title {
-        background: linear-gradient(89.46deg, #DDA6FF -5.85%, #D828F4 106.28%);
-        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
-        border-radius: 5px 55px 0px;
-        }
     }
 
     &_third {
         grid-area: card__third;
-        .card__title {
-        background: linear-gradient(98.51deg, #FF9898 14.64%, #FF1F00 102.27%);
-        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
-        border-radius: 5px 55px 0px;
-        }
-
     }
 
     &__title {
@@ -366,7 +348,21 @@ a {
         grid-area: card__title;
         height: 50px;
         overflow: hidden;
+        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
+        border-radius: 5px 55px 0px;
 
+
+        &_first {
+            background: linear-gradient(103.24deg, #05FFFF -7.39%, #0AA6FE 85.9%);
+        }
+        
+        &_second {
+            background: linear-gradient(89.46deg, #DDA6FF -5.85%, #D828F4 106.28%);
+        }
+
+        &_third {
+            background: linear-gradient(98.51deg, #FF9898 14.64%, #FF1F00 102.27%);
+        }
     }
 
 
@@ -624,9 +620,36 @@ a {
 
     }
     
-    &__card {
+    &__cards {
         display: flex;
+        // width: 100px;
+        // overflow: hidden;
+
+        img {
+            width: 100px;
+        }
+
+
     }
+
+    &__card {
+        width: 33.333%;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &_active {
+            border: 2px solid orange;
+            border-radius: 5px;    
+        }
+    }
+    
+    &__price {
+        @include fontsz(25, 20, 15);
+        display: inline;
+    }
+
     &_close {
         position: absolute;
         top: 15px;
@@ -638,4 +661,19 @@ a {
 
 
 
+}
+
+.card {
+
+
+
+    &__img_pop_up {
+        // width: 33.333%;
+        overflow: hidden;
+
+    }
+
+    &__price_pop_up {
+
+    }
 }

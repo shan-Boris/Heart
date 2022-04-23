@@ -177,9 +177,11 @@ window.addEventListener('DOMContentLoaded', () => {
     (0,_modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__["default"])();
     (0,_modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
-    const openPopUp = document.querySelectorAll('.order-button');
-    const closePopUp = document.querySelector('.pop_up_close');
-    const popUp = document.querySelector('.pop_up');
+    const openPopUp = document.querySelectorAll('.order-button'),
+          closePopUp = document.querySelector('.pop_up_close'),
+          popUp = document.querySelector('.pop_up'),
+          popUpCards = document.querySelectorAll('.pop_up__card');
+
 
     openPopUp.forEach(v => {
         v.addEventListener('click', function (e) {
@@ -199,9 +201,31 @@ window.addEventListener('DOMContentLoaded', () => {
         closePopUp.addEventListener('click', () => {
             popUp.classList.remove('pop_up_active');
         })
+    })
+
+
+
+    popUpCards.forEach(v => {
+        v.addEventListener('mouseover', () => {
+            v.classList.add('pop_up__card_active');
+        });
         
-
-
+        v.addEventListener('mouseout', () => {
+            if (!v.activ) {
+                v.classList.remove('pop_up__card_active');
+            }
+        });
+        
+        v.addEventListener('click', () => {
+            popUpCards.forEach(v => {
+                v.activ = false;
+                v.classList.remove('pop_up__card_active')
+            });
+            v.classList.add('pop_up__card_active');
+            v.activ = true;
+            console.dir(v);
+        });
+        
     })
 })
 })();
