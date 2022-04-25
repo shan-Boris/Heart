@@ -180,7 +180,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const openPopUp = document.querySelectorAll('.order-button'),
           closePopUp = document.querySelector('.pop_up_close'),
           popUp = document.querySelector('.pop_up'),
-          popUpCards = document.querySelectorAll('.pop_up__card');
+          popUpCards = document.querySelectorAll('.pop_up__card'),
+          orderButtonsCard = document.querySelectorAll('.card__button');
+
 
 
     openPopUp.forEach(v => {
@@ -205,28 +207,37 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    popUpCards.forEach(v => {
-        v.addEventListener('mouseover', () => {
-            v.classList.add('pop_up__card_active');
+    popUpCards.forEach((card, index) => {
+        card.addEventListener('mouseover', () => {
+            card.classList.add('pop_up__card_active');
         });
         
-        v.addEventListener('mouseout', () => {
-            if (!v.activ) {
-                v.classList.remove('pop_up__card_active');
+        card.addEventListener('mouseout', () => {
+            if (!card.activ) {
+                card.classList.remove('pop_up__card_active');
             }
         });
         
-        v.addEventListener('click', () => {
+        clickForChooseCard(card, index);
+        
+    })
+
+
+    orderButtonsCard.forEach((button, i) => {
+        clickForChooseCard(button, i);
+    });
+
+    function clickForChooseCard(card, index) {
+        card.addEventListener('click', () => {
             popUpCards.forEach(v => {
                 v.activ = false;
                 v.classList.remove('pop_up__card_active')
             });
-            v.classList.add('pop_up__card_active');
-            v.activ = true;
-            console.dir(v);
-        });
-        
-    })
+            popUpCards[index].classList.add('pop_up__card_active');
+            popUpCards[index].activ = true;
+        })
+    };
+
 })
 })();
 
