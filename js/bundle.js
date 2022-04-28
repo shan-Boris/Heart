@@ -30,6 +30,83 @@ function navigateOnAnchors() {
 
 /***/ }),
 
+/***/ "./js/modules/popUp.js":
+/*!*****************************!*\
+  !*** ./js/modules/popUp.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function activatePopUp() {
+    const openPopUp = document.querySelectorAll('.order-button'),
+          closePopUp = document.querySelector('.pop_up_close'),
+          popUp = document.querySelector('.pop_up'),
+          popUpCards = document.querySelectorAll('.pop_up__card'),
+          orderButtonsCard = document.querySelectorAll('.card__button');
+
+
+
+    openPopUp.forEach(v => {
+        v.addEventListener('click', function (e) {
+            e.preventDefault();
+            popUp.classList.add('pop_up_active');
+            document.querySelector('.pop_up_container').addEventListener('click', (e) => {
+                if (e.srcElement?.className == "pop_up_container") {
+                    popUp.classList.remove('pop_up_active');
+                }
+            })
+            document.addEventListener('keydown', function(e) {
+                if (e.code == "Escape") {
+                    popUp.classList.remove('pop_up_active');
+                }
+            });
+        })
+        closePopUp.addEventListener('click', () => {
+            popUp.classList.remove('pop_up_active');
+        })
+    })
+
+
+
+    popUpCards.forEach((card, index) => {
+        card.addEventListener('mouseover', () => {
+            card.classList.add('pop_up__card_active');
+        });
+        
+        card.addEventListener('mouseout', () => {
+            if (!card.activ) {
+                card.classList.remove('pop_up__card_active');
+            }
+        });
+        
+        clickForChooseCard(card, index);
+        
+    })
+
+
+    orderButtonsCard.forEach((button, i) => {
+        clickForChooseCard(button, i);
+    });
+
+    function clickForChooseCard(card, index) {
+        card.addEventListener('click', () => {
+            popUpCards.forEach(v => {
+                v.activ = false;
+                v.classList.remove('pop_up__card_active')
+            });
+            popUpCards[index].classList.add('pop_up__card_active');
+            popUpCards[index].activ = true;
+        })
+    };
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (activatePopUp);
+
+/***/ }),
+
 /***/ "./js/modules/scrollToTop.js":
 /*!***********************************!*\
   !*** ./js/modules/scrollToTop.js ***!
@@ -166,6 +243,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_spoiler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/spoiler */ "./js/modules/spoiler.js");
 /* harmony import */ var _modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/navigationOnAnchors */ "./js/modules/navigationOnAnchors.js");
 /* harmony import */ var _modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/scrollToTop */ "./js/modules/scrollToTop.js");
+/* harmony import */ var _modules_popUp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/popUp */ "./js/modules/popUp.js");
+
 
 
 
@@ -176,68 +255,37 @@ window.addEventListener('DOMContentLoaded', () => {
     (0,_modules_spoiler__WEBPACK_IMPORTED_MODULE_0__["default"])();
     (0,_modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__["default"])();
     (0,_modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    (0,_modules_popUp__WEBPACK_IMPORTED_MODULE_3__["default"])();
+    
 
-    const openPopUp = document.querySelectorAll('.order-button'),
-          closePopUp = document.querySelector('.pop_up_close'),
-          popUp = document.querySelector('.pop_up'),
-          popUpCards = document.querySelectorAll('.pop_up__card'),
-          orderButtonsCard = document.querySelectorAll('.card__button');
+    const inp = document.querySelector('#valid');
 
-
-
-    openPopUp.forEach(v => {
-        v.addEventListener('click', function (e) {
-            e.preventDefault();
-            popUp.classList.add('pop_up_active');
-            document.querySelector('.pop_up_container').addEventListener('click', (e) => {
-                if (e.srcElement?.className == "pop_up_container") {
-                    popUp.classList.remove('pop_up_active');
-                }
-            })
-            document.addEventListener('keydown', function(e) {
-                if (e.code == "Escape") {
-                    popUp.classList.remove('pop_up_active');
-                }
-            });
-        })
-        closePopUp.addEventListener('click', () => {
-            popUp.classList.remove('pop_up_active');
-        })
-    })
-
-
-
-    popUpCards.forEach((card, index) => {
-        card.addEventListener('mouseover', () => {
-            card.classList.add('pop_up__card_active');
-        });
-        
-        card.addEventListener('mouseout', () => {
-            if (!card.activ) {
-                card.classList.remove('pop_up__card_active');
+    function helpInputNumberPhone(input){
+        const symbol = {
+            4: ') ',
+            7: '-',
+            9: '-',
+        };
+        input.addEventListener('input', (e => {
+            const lengthNumber = input.value?.match(/\d/g)?.length
+            if (e?.data?.match(/\D/) && !e?.data?.match(/\+/) || lengthNumber > 11) {
+                input.value = input.value.slice(0, -1);
             }
-        });
-        
-        clickForChooseCard(card, index);
-        
-    })
 
+            if (input.value?.length == 1 && e.data != null) {
+                e.data == '9' ? input.value = '+7 (9' : input.value = '+7 ('
+            } else if (symbol[lengthNumber] && e.data != null){
+                input.value = input.value + symbol[lengthNumber];
+            }
+            
+    }))};
 
-    orderButtonsCard.forEach((button, i) => {
-        clickForChooseCard(button, i);
-    });
-
-    function clickForChooseCard(card, index) {
-        card.addEventListener('click', () => {
-            popUpCards.forEach(v => {
-                v.activ = false;
-                v.classList.remove('pop_up__card_active')
-            });
-            popUpCards[index].classList.add('pop_up__card_active');
-            popUpCards[index].activ = true;
-        })
+    function checkPhoneNumber(number) {
+        return /^((8|\+7)[\- ]?)(\(?\d{3}\)?[\- ]?)\d{3}[\- ]?\d{2}[\- ]?\d{2}$/.test(number);
     };
 
+    helpInputNumberPhone(inp);
+    console.log(checkPhoneNumber(inp.value)); 
 })
 })();
 
