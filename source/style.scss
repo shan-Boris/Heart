@@ -615,6 +615,13 @@ a {
             color: #fff;
             border-radius: 10px;
             background-color: orange;
+            transition-duration: 150ms; 
+            &:hover{
+                transform: scale(1.3);      
+            }
+            &:active{
+                transform: none ;         
+            }
         
         }
 

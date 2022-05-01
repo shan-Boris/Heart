@@ -2,6 +2,40 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./js/modules/helpInputNumberPhone.js":
+/*!********************************************!*\
+  !*** ./js/modules/helpInputNumberPhone.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+function helpInputNumberPhone(){
+    const input = document.querySelector('#phone');
+    const symbol = {
+        4: ') ',
+        7: '-',
+        9: '-',
+    };
+    input.addEventListener('input', (e => {
+        const lengthNumber = input.value?.match(/\d/g)?.length
+        if (e?.data?.match(/\D/) && !e?.data?.match(/\+/) || lengthNumber > 11) {
+            input.value = input.value.slice(0, -1);
+        } else if (input.value?.length == 1 && e.data != null) {
+            e.data == '9' ? input.value = '+7 (9' : input.value = '+7 ('
+        } else if (symbol[lengthNumber] && e.data != null){
+            input.value = input.value + symbol[lengthNumber];
+        }
+        
+}))};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (helpInputNumberPhone);
+
+/***/ }),
+
 /***/ "./js/modules/navigationOnAnchors.js":
 /*!*******************************************!*\
   !*** ./js/modules/navigationOnAnchors.js ***!
@@ -244,6 +278,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/navigationOnAnchors */ "./js/modules/navigationOnAnchors.js");
 /* harmony import */ var _modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/scrollToTop */ "./js/modules/scrollToTop.js");
 /* harmony import */ var _modules_popUp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/popUp */ "./js/modules/popUp.js");
+/* harmony import */ var _modules_helpInputNumberPhone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/helpInputNumberPhone */ "./js/modules/helpInputNumberPhone.js");
+
 
 
 
@@ -256,36 +292,26 @@ window.addEventListener('DOMContentLoaded', () => {
     (0,_modules_navigationOnAnchors__WEBPACK_IMPORTED_MODULE_1__["default"])();
     (0,_modules_scrollToTop__WEBPACK_IMPORTED_MODULE_2__["default"])();
     (0,_modules_popUp__WEBPACK_IMPORTED_MODULE_3__["default"])();
+    (0,_modules_helpInputNumberPhone__WEBPACK_IMPORTED_MODULE_4__["default"])();
+
+    const popUpButton = document.querySelector('.pop_up_body button'),
+          inputPhone = document.querySelector('#phone');
+
+    popUpButton.addEventListener('click', e => {
+        e.preventDefault();
+        if (!checkPhoneNumber(inputPhone.value)) {
+            inputPhone.style.outline = '2px solid red';
+        } else {
+            inputPhone.style.outline = '';
+        }
+    })
+
     
 
-    const inp = document.querySelector('#valid');
-
-    function helpInputNumberPhone(input){
-        const symbol = {
-            4: ') ',
-            7: '-',
-            9: '-',
-        };
-        input.addEventListener('input', (e => {
-            const lengthNumber = input.value?.match(/\d/g)?.length
-            if (e?.data?.match(/\D/) && !e?.data?.match(/\+/) || lengthNumber > 11) {
-                input.value = input.value.slice(0, -1);
-            }
-
-            if (input.value?.length == 1 && e.data != null) {
-                e.data == '9' ? input.value = '+7 (9' : input.value = '+7 ('
-            } else if (symbol[lengthNumber] && e.data != null){
-                input.value = input.value + symbol[lengthNumber];
-            }
-            
-    }))};
-
     function checkPhoneNumber(number) {
-        return /^((8|\+7)[\- ]?)(\(?\d{3}\)?[\- ]?)\d{3}[\- ]?\d{2}[\- ]?\d{2}$/.test(number);
+        return /^((8|\+7)?[\- ]?)(\(?\d{3}\)?[\- ]?)\d{3}[\- ]?\d{2}[\- ]?\d{2}$/.test(number);
     };
 
-    helpInputNumberPhone(inp);
-    console.log(checkPhoneNumber(inp.value)); 
 })
 })();
 
